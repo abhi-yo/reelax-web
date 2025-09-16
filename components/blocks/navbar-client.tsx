@@ -20,21 +20,46 @@ export default function NavbarClient() {
     >
       <div className="mx-auto max-w-[1120px] px-4 sm:px-6 h-14 flex items-center justify-between">
         <div className="flex items-center gap-2 select-none">
-          <div className="size-6 rounded border border-black bg-white" aria-hidden />
           <span className="text-[15px] tracking-[-0.01em] font-semibold">Reelax</span>
         </div>
-        <nav className="hidden sm:flex items-center gap-6 text-[13px]">
-          <a href="#features" className="hover:underline">Features</a>
-          <a href="#how" className="hover:underline">How it works</a>
-          <a href="#faq" className="hover:underline">FAQ</a>
-        </nav>
-        <a
-          href="#cta"
-          className="px-3 py-1.5 text-[13px] font-medium border border-black bg-[var(--accent)] text-white hover:bg-white hover:text-black transition-colors rounded-md"
-        >
-          Add to Chrome
-        </a>
+        
+        <div className="flex items-center gap-4">
+          <nav className="hidden sm:flex items-center gap-6 text-[13px]">
+            <a href="#features" className="hover:underline">Features</a>
+            <a href="#how" className="hover:underline">How it works</a>
+            <a href="#faq" className="hover:underline">FAQ</a>
+          </nav>
+          
+          <div className="flex items-center gap-3">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 hover:bg-black/5 rounded-md transition-colors duration-200"
+              aria-label="Follow us on Twitter"
+            >
+              <TwitterIcon />
+            </a>
+            <a
+              href="#cta"
+              className="px-3 py-1.5 text-[13px] font-medium border border-black bg-[var(--accent)] text-white hover:bg-white hover:text-black transition-all duration-200 rounded-md"
+            >
+              Add to Chrome
+            </a>
+          </div>
+        </div>
       </div>
     </header>
+  );
+}
+
+function TwitterIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden className="size-4">
+      <path
+        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+        fill="currentColor"
+      />
+    </svg>
   );
 }
