@@ -4,62 +4,74 @@ import { useEffect, useState } from "react";
 
 export default function NavbarClient() {
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const ids = ["features", "how", "faq"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) setActive(e.target.id);
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0.1 }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const linkBase =
+    "relative transition-colors text-[14px] sm:text-[15px] text-slate-700 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/10 focus-visible:ring-offset-2 focus-visible:ring-offset-white after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-slate-900 after:transition-opacity";
+
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 backdrop-blur-md supports-[backdrop-filter]:bg-white/50 bg-white/70 transition-[border-color,box-shadow,background-color] duration-200 ${
-        scrolled ? "border-b border-black/10 shadow-[0_1px_0_rgba(0,0,0,0.06)] supports-[backdrop-filter]:bg-white/70 bg-white/80" : "border-b border-transparent"
-      }`}
-    >
-      <div className="mx-auto max-w-[1120px] px-4 sm:px-6 h-14 flex items-center justify-between">
-        <div className="flex items-center gap-2 select-none">
-          <span className="text-[15px] tracking-[-0.01em] font-semibold">Reelax</span>
-        </div>
-        
-        <div className="flex items-center gap-4">
-          <nav className="hidden sm:flex items-center gap-6 text-[13px]">
-            <a href="#features" className="hover:underline">Features</a>
-            <a href="#how" className="hover:underline">How it works</a>
-            <a href="#faq" className="hover:underline">FAQ</a>
-          </nav>
-          
-          <div className="flex items-center gap-3">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-1.5 hover:bg-black/5 rounded-md transition-colors duration-200"
-              aria-label="Follow us on Twitter"
-            >
-              <TwitterIcon />
-            </a>
-            <a
-              href="#cta"
-              className="px-3 py-1.5 text-[13px] font-medium border border-black bg-[var(--accent)] text-white hover:bg-white hover:text-black transition-all duration-200 rounded-md"
-            >
-              Add to Chrome
-            </a>
-          </div>
-        </div>
+    <header className="fixed top-[env(safe-area-inset-top)] inset-x-0 z-40 pointer-events-none" aria-label="Primary">
+      <div
+        className={
+          `pointer-events-auto flex items-center justify-between transition-all duration-300 ${
+            scrolled
+              ? "mx-auto mt-4 sm:mt-5 w-fit gap-10 rounded-full border border-slate-200/80 bg-white/80 px-6 sm:px-7 py-2.5 shadow-lg backdrop-blur-xl ring-1 ring-black/5 supports-[backdrop-filter]:bg-white/60"
+              : "mx-auto max-w-[1120px] px-6 sm:px-8 h-16 w-full"
+          }`
+        }
+      >
+        <a href="/" className="flex items-center gap-2 select-none">
+          <span className="text-[15px] sm:text-[16px] font-medium tracking-[-0.01em] text-slate-900">Reelax</span>
+        </a>
+
+        <nav className={`flex items-center ${scrolled ? "gap-9" : "gap-9"}`}>
+          <a
+            href="#features"
+            className={`${linkBase} ${active === "features" ? "text-slate-900 after:opacity-100" : "after:opacity-0"}`}
+            aria-current={active === "features" ? "page" : undefined}
+          >
+            Features
+          </a>
+          <a
+            href="#how"
+            className={`${linkBase} ${active === "how" ? "text-slate-900 after:opacity-100" : "after:opacity-0"}`}
+            aria-current={active === "how" ? "page" : undefined}
+          >
+            How it works
+          </a>
+          <a
+            href="#faq"
+            className={`${linkBase} ${active === "faq" ? "text-slate-900 after:opacity-100" : "after:opacity-0"}`}
+            aria-current={active === "faq" ? "page" : undefined}
+          >
+            FAQ
+          </a>
+        </nav>
       </div>
     </header>
-  );
-}
-
-function TwitterIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden className="size-4">
-      <path
-        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-        fill="currentColor"
-      />
-    </svg>
   );
 }

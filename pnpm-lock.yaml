@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@paper-design/shaders-react':
+    specifier: ^0.0.54
+    version: 0.0.54(@types/react@19.1.13)(react@19.1.0)
   '@radix-ui/react-slot':
     specifier: ^1.2.3
     version: 1.2.3(@types/react@19.1.13)(react@19.1.0)
@@ -548,6 +551,24 @@ packages:
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
     dev: true
+
+  /@paper-design/shaders-react@0.0.54(@types/react@19.1.13)(react@19.1.0):
+    resolution: {integrity: sha512-yO4uJBZdWl9xAtfrHQQoDmfvJ0mkuxqB4tclSdZqS3X3dkLKYnzNxrpo/ZiNA0hkLcUXssCDQ8sB2dZO/m6Pww==}
+    peerDependencies:
+      '@types/react': ^18 || ^19
+      react: ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@paper-design/shaders': 0.0.54
+      '@types/react': 19.1.13
+      react: 19.1.0
+    dev: false
+
+  /@paper-design/shaders@0.0.54:
+    resolution: {integrity: sha512-SYuWGPhyfxy0E/kquCmZ30aY96UyVmsIiqXEzQhwy1AdeIRbYkEjcPj6Eu9US7p0n/pOQOhINxIR1moKx3XNLQ==}
+    dev: false
 
   /@radix-ui/react-compose-refs@1.1.2(@types/react@19.1.13)(react@19.1.0):
     resolution: {integrity: sha512-z4eqJvfiNnFMHIIvXP3CY57y2WJs5g2v3X0zm9mEJkrkNv4rDxu+sg9Jh8EkXyeqBkB7SOcboo9dMVqhyrACIg==}

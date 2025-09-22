@@ -1,17 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  /* Light theme only */
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --primary: #0a0a0a;
-  --accent: #ff4d2d; /* orange-red */
+  /* Modern glassmorphic theme */
+  --background: #f8fafc;
+  --foreground: #1e293b;
+  --primary: #334155;
+  --accent: #ef4444; /* Modern red */
   --accent-ink: #ffffff;
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.4);
 }
 
-/* Lock to light theme; no dark mode to keep brand strictly monochrome */
+/* Modern glassmorphic body styling */
 body {
   color: var(--foreground);
+  background: #ffffff; /* force plain white site-wide */
+  min-height: 100vh;
 }
 
 /* Crisper type and consistent spacing */
@@ -23,8 +27,8 @@ img, svg { display: block; max-width: 100%; height: auto; }
 body { font-family: var(--font-geist-sans), ui-sans-serif, system-ui; }
 code, pre, kbd, samp { font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace; }
 
-/* Serif display utility */
-.font-serif-display { font-family: var(--font-instrument-serif), ui-serif, Georgia, serif; }
+/* Display utility now aliases to Geist too */
+.font-serif-display { font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
 
 /* Simple link behavior */
 a { text-underline-offset: 2px; }
