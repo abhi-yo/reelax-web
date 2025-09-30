@@ -22,7 +22,7 @@ export default function FAQSectionClient({ items }: { items: FAQItem[] }) {
               aria-controls={contentId}
               aria-expanded={isOpen}
               onClick={() => setOpen(isOpen ? null : idx)}
-              className="w-full text-left px-5 py-4 sm:px-6 sm:py-5 flex items-start justify-between gap-6 hover:bg-black/[0.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-black rounded-md"
+              className="w-full text-left px-4 py-4 sm:px-5 sm:py-4 flex items-center justify-between gap-6 hover:bg-black/[0.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
             >
               <span className="text-[15px] font-medium tracking-[-0.005em] pr-6">
                 {item.q}
@@ -44,7 +44,7 @@ export default function FAQSectionClient({ items }: { items: FAQItem[] }) {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
                 >
-                  <div className="px-5 sm:px-6 pb-5 pt-0 text-[14px] text-black/70 leading-[1.7] border-t border-black/10">
+                  <div className="pl-4 pr-6 sm:pl-5 sm:pr-7 pb-4 pt-4 text-[14px] text-black/70 leading-[1.7] border-t border-black/10">
                     {item.a}
                   </div>
                 </motion.div>
